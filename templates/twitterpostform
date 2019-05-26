@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Post</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    </head>
+    <body>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                <form method="POST" class="post-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                   <div class="w3-section w3-center">
+                        <label><b>Twitter Post</b></label><br>
+                        {{ form.post }}
+                    </div>
+                    <button class="w3-button gru-blue w3-card-2 w3-round-xxlarge w3-padding w3-margin save" type="submit">Save</button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
