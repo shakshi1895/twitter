@@ -10,7 +10,7 @@ from django.utils.encoding import smart_str
 
 class TwitterProfile(models.Model):
     """
-    Class to store user profile
+    Class to store twitter user data
     """
     user = models.OneToOneField(User, null=True, blank=True)
     gender = models.CharField(max_length=10, null=True, blank=True)
@@ -29,6 +29,9 @@ class TwitterProfile(models.Model):
 
 
 class TwitterFollowers(models.Model):
+    """
+    Class to store followers for every user
+    """
     user = models.ForeignKey('TwitterProfile', related_name='User')
     follower = models.ForeignKey('TwitterProfile', related_name='Follower')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -38,6 +41,9 @@ class TwitterFollowers(models.Model):
 
 
 class TwitterPosts(models.Model):
+    """
+    Class to store twitter posts posted by each user
+    """
     posted_by = models.ForeignKey('TwitterProfile',
                                   related_name='post_posted_by')
     post = models.TextField()
