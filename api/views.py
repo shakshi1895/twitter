@@ -20,6 +20,11 @@ from twitter.models import TwitterProfile, TwitterPosts, TwitterFollowers
 @api_view(["POST"])
 @permission_classes((AllowAny,))
 def login(request):
+    """
+
+    :param request: {'username': 'shakshi', 'password': 'grubox@123'}
+    :return: {"token": token} if user authenticated else 404
+    """
     username = request.data.get("username")
     password = request.data.get("password")
     if username is None or password is None:
@@ -35,16 +40,29 @@ def login(request):
 
 
 class UpdateFollowerClass(CreateAPIView):
+    """
+    DRF Classview to create follower for a user
+    :param request: {'user': 2, 'follower': 1} , where value of user and follower is twitterprofile id
+    :return: success if follower is succesfully updated 
+    """
     serializer_class = FollowerUpdateSerializer
     queryset = TwitterProfile.objects.all()
 
 
 class PostTweetClass(CreateAPIView):
+    """
+    DRF Classview to create twitter posts
+    :param request: {'post': "Post data", 'user': 1}
+    :return: success if post is succesfullly created
+    """
     serializer_class = TwitterPostSerializer
     queryset = TwitterPosts.objects.all()
 
 
 class PostsListClass(ListAPIView):
+    """
+    DRF Classview to give list of posts posted by the people followed by request user
+    """
     serializer_class = TwitterPostListSerializer
 
     def get_queryset(self):
