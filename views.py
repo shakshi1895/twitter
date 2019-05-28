@@ -10,6 +10,11 @@ from twitter.models import TwitterProfile
 
 
 def create_twitter_post(request):
+    """
+    
+    :param request: request contains twitter post data to be udpated
+    :return: render twitterpost form template
+    """
     if request.method == "POST":
         form = TwitterPostForm(request.POST, request.FILES)
         if form.is_valid():
